@@ -2,33 +2,22 @@
 //include("../db/item.csv");
 include("../items/read_items.php");
 //echo "HErere";
-$all = read_csv();
-
-foreach ($all as $value) {
-  //echo($value["category"] != 'asia');
-    echo "<br />";
-  echo($value["category"]);
-    echo "<br />";
-  if (trim($value["category"]) == "asia")
+$all = read_csv("../db/item_2.csv");
+echo "<form  action='create_cart.php' method='post'>'";
+foreach ($all as $value)
+{
+  echo "<br />";
+  if (in_array("red", explode(';',$value["category"])))
+  {
     {
- echo "<form  action='create.php' method='post'>Description<br /><IMG SRC='";
- echo $value['link'];
- echo "'></form>";
- }
-
+      echo"<IMG SRC='";
+      echo $value['link']."'>";
+      $ind = "ind_".$value["id"];
+      echo $ind."<br>";
+      echo "Quantity: <input type='number' name='$ind' min'1'/>";
+    }
+  }
 }
+echo "  <br /><input type='submit' name='submit' value='OK '/>";
+echo "</form>";
 ?>
-<html>
-  <body>
-  CREATE
-<form  action="create.php" method="post">
-  New username: <input type="text" name="login" value="<?php echo $all[2]["category"]; ?>" />
-  <br />
-  New password: <input type="text" name="passwd" value="" />
-  <br />
-  <input type="submit" name="submit" value="OK" />
-  
-
-
-</form>
-</body></html>
