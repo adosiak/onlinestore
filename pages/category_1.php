@@ -1,23 +1,30 @@
+<style>
+<?php include '../master_css.css'; ?>
+</style>
 <?php
 //include("../db/item.csv");
 include("../items/read_items.php");
-//echo "HErere";
-$all = read_csv("../db/item_2.csv");
-echo "<form  action='create_cart.php' method='post'>'";
-foreach ($all as $value)
-{
-  echo "<br />";
-  if (in_array("red", explode(';',$value["category"])))
-  {
+$all = read_csv("../db/item.csv");
+// $category = "";
+$category = $_GET["category"];
+// $headers = $col = "";
+$carturl = "../../cart.php";
+echo "<form action={$carturl} method=\"post\">";
+echo "<table id=\"categories_table\" width=\"100%\" align=\"center\" border=\"2px\"><tr><th style=\"float: left;\" width=\"100%\">Fruit type</th> <th width=\"100%\">Description</th> <th width=\"100%\">Price</th><th>Quantity</th></tr>";
+foreach ($all as $value) {
+   //echo($value["category"]);
+   // echo "<br />";
+  if(in_array($category, explode(";", $value["category"])))
     {
-      echo"<IMG SRC='";
-      echo $value['link']."'>";
-      $ind = "ind_".$value["id"];
-      echo $ind."<br>";
-      echo "Quantity: <input type='number' name='$ind' min'1'/>";
-    }
-  }
+      // <form  action='create.php' method='post'></form>
+ echo "<tr><td align=\"center\" colspan=\"2\">{$value["name"]}<br/><IMG SRC='" . $value['link'] . "'height=100px;></td>";
+ echo "<td align=\"center\" colspan=\"2\"> {$value["name"]} is key: {$value["id"]}</td><br>";
+ echo "<td align=\"center\" colspan=\"2\">\${$value["price"]}</td>";
+ echo "<td><input name=\"ind_{$value["id"]}\" type=\"number\" value=0></td></tr>";
+ }
 }
-echo "  <br /><input type='submit' name='submit' value='OK '/>";
-echo "</form>";
+ echo "</table>";
 ?>
+<input type="hidden" name="Submitted" value="True" />
+<input type="submit" value="Sendt'd" style="float: right;" /><br>
+</form>
