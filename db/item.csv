@@ -1,7 +1,7 @@
-id,name,link,category
-1,kiwi,a,green
-2,strawberry,aa,red
-3,papaya,n,green;yellow
-4,bananas,h,yellow
-5,water melon,r,green;red
-6,pomegranate,n,red
+id,name,link,categ,price
+1,kiwi,a,green,1
+2,strawberry,aa,red,2
+3,papaya,n,green;yellow,3
+4,bananas,h,yellow,4
+5,water melon,r,green;red,5
+06,beautiful_lily,!!!link,tesst_cat,123
