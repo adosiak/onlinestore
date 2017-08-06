@@ -1,4 +1,6 @@
-
+<?php>
+session_start();
+?>
 <html>
 	<head>
 	<link rel="stylesheet" type"text/css" href="styles.css" />
@@ -12,14 +14,14 @@
 	</head>
 <?php ?>
 <div id="fixed-pos">
-<left><img title ="DOGE" src="./img/photo.jpg" alt="DOGE" height="60" width="60" style="float: left;"/><a class="sitelink" href="http://localhost:8080/rush00/git/pages/category_1.php?category=red" style="float: right;">Red Fruit</a><br>
-<a class="sitelink" href="http://localhost:8080/rush00/git/pages/category_1.php?category=yellow" target="_self" style="float: right;">Yellow Fruit</a><br>
-<a class="sitelink" href="http://localhost:8080/rush00/git/pages/category_1.php?category=green" target="_self" style="float: right;">Green Fruit</a></center>
+<left><img title ="DOGE" src="./img/photo.jpg" alt="DOGE" height="60" width="60" style="float: left;"/><a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=red" style="float: right;">Red Fruit</a><br>
+<a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=yellow" target="_self" style="float: right;">Yellow Fruit</a><br>
+<a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=green" target="_self" style="float: right;">Green Fruit</a></center>
 <br>
-<form action="shop.php" method="post">
+<form action="user/login.php" method="post">
 <br><b>Login Here!</b><br/>
-<input name="username" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
-<input name="password" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>
+<input name="exist_login" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
+<input name="exist_pw" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>
 <input type="hidden" name="Submitted" value="True" />
 <input type="submit" value="Send" /><br>
 
@@ -35,4 +37,18 @@
 
 
 </form>
+<form action="user/logout.php">
+	<input type="hidden" name="Submitted" value="True" />
+	<input type="submit" value="Logout" /><br>
+</form>
+
+</form>
+<form action="user/create.php">
+	CREATE<br>
+	<input name="login" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
+	<input name="passwd" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>
+	<input type="hidden" name="Submitted" value="True" />
+	<input type="submit" value="Send" /><br>
+</form>
+
 </body>

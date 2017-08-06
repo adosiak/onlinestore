@@ -4,7 +4,7 @@
 <?php
 //include("../db/item.csv");
 include("../items/read_items.php");
-$all = read_csv("../db/item.csv");
+$all = read_csv("../db/item_2.csv");
 // $category = "";
 $category = $_GET["category"];
 // $headers = $col = "";

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 function auth($login, $passwd)
 {
   $out = unserialize(file_get_contents("../db/passwd"));
