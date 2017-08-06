@@ -1,34 +1,31 @@
+<style>
+<?php include '../master_css.css'; ?>
+</style>
 <?php
 //include("../db/item.csv");
 include("../items/read_items.php");
-//echo "HErere";
+
 $all = read_csv();
-
+// $category = "";
+$category = $_GET["category"];
+// $headers = $col = "";
+$carturl = "../../cart.php";
+echo "<form action={$carturl} method=\"post\">";
+echo "<table id=\"categories_table\" width=\"100%\" align=\"center\" border=\"2px\"><tr><th style=\"float: left;\" width=\"100%\">Fruit type</th> <th width=\"100%\">Description</th> <th width=\"100%\">Price</th><th>Quantity</th></tr>";
 foreach ($all as $value) {
-  //echo($value["category"] != 'asia');
-    echo "<br />";
-  echo($value["category"]);
-    echo "<br />";
-  if (trim($value["category"]) == "asia")
+   //echo($value["category"]);
+   // echo "<br />";
+  if(in_array($category, explode(";", $value["category"]))) 
     {
- echo "<form  action='create.php' method='post'>Description<br /><IMG SRC='";
- echo $value['link'];
- echo "'></form>";
+      // <form  action='create.php' method='post'></form>
+ echo "<tr><td align=\"center\" colspan=\"2\">{$value["name"]}<br/><IMG SRC='" . $value['link'] . "'height=100px;></td>";
+ echo "<td align=\"center\" colspan=\"2\"> {$value["name"]} is key: {$value["id"]}</td><br>";
+ echo "<td align=\"center\" colspan=\"2\">\${$value["price"]}</td>";
+ echo "<td><input name=\"ind_{$value["id"]}\" type=\"number\" value=0></td></tr>";
  }
-
 }
+ echo "</table>";
 ?>
-<html>
-  <body>
-  CREATE
-<form  action="create.php" method="post">
-  New username: <input type="text" name="login" value="<?php echo $all[2]["category"]; ?>" />
-  <br />
-  New password: <input type="text" name="passwd" value="" />
-  <br />
-  <input type="submit" name="submit" value="OK" />
-  
-
-
+<input type="hidden" name="Submitted" value="True" />
+<input type="submit" value="Sendt'd" style="float: right;" /><br>
 </form>
-</body></html>
