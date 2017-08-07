@@ -14,12 +14,12 @@ $pw = $_POST["exist_pw"];
 
 if (auth($login , $pw))
  {
-   $_SESSION["loggued_on_user"] = $login;
+   $_SESSION["logged_on_user"] = $login;
    echo "OK\n";
  }
 else
   {
-    $_SESSION["loggued_on_user"] = "";
+    $_SESSION["logged_on_user"] = "";
     echo "NO such user\n";
   }
 
