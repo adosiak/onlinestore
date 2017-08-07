@@ -8,7 +8,7 @@ function read_csv($file_name) //"../db/item_2.csv"
  }
  $item_db = array();
  $tmp = fgetcsv($db, 0, ",");
- //print_r($tmp);
+ print_r($tmp);
  $size = count($tmp);
  while ($data = fgetcsv($db, 0, ","))
  {
@@ -23,6 +23,7 @@ function read_csv($file_name) //"../db/item_2.csv"
    $item_db[] = $t;
  }
  fclose($db);
+ print_r($item_db);
  return ($item_db);
 }
 

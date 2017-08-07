@@ -1,9 +1,9 @@
 <?php
 include("../items/read_items.php");
-session_start();
+//session_start();
 $all = read_csv("../db/item_2.csv");
 //echo "<br>";
-//print_r($_SESSION["cart"]);
+print_r($_SESSION["cart"]);
 $prev = $_SESSION["cart"];
 foreach ($all as $value)
  {
@@ -16,9 +16,6 @@ foreach ($all as $value)
          foreach ($prev as $key => $val)
            if (array_key_exists($value['id'],$prev[$key]))
            {
-            //  echo "<br>YESSSS";
-            //  echo $_POST[$i]."<br>prev id:";
-            //  echo $prev[$key][$value['id']];
              $prev[$key][$value['id']] = $_POST[$i];
              $flag = 1;
            }
@@ -28,6 +25,28 @@ foreach ($all as $value)
     }
    }
 $_SESSION["cart"] = $prev;
-//echo $str;
-//echo($var);
+
+function upload_cart()
+{
+  if (!file_exists("../db/cart.csv"))
+    return ("");
+  else
+  {
+    $all_cart = read_csv("../db/cart.csv");
+    foreach ($all_cart as $key => $value)
+    {
+      if ($value["login"] == $_SESSION['logged_on_user'])
+      {
+        $str = $value["items"];
+        break ;
+      }
+    }
+      $new_arr = explode(";", trim($str, ";"));
+      foreach ($new_arr as $key => $value) {
+        $tmp = explode(":", $value);
+        $new_arr[$key] = array($tmp[0]=>$tmp[1]);
+      }
+      return ($new_arr[$key]);
+  }
+}
 ?>
