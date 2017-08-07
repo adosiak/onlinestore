@@ -1,10 +1,7 @@
-<?php>
-session_start();
-?>
 <html>
 	<head>
-	<link rel="stylesheet" type"text/css" href="styles.css" />
-	<link rel="stylesheet" type"text/css" href="master_css.css" />
+	<link rel="stylesheet" type"text/css" href="includes/styles.css" />
+	<link rel="stylesheet" type"text/css" href="includes/master_css.css" />
 	<link rel="icon" href="img/photo.jpg">
 	<meta name="description" content="Welcome to phpRush00 Site" />
 	<meta name="keywords" content="ecommerce, dogs" />
@@ -12,9 +9,9 @@ session_start();
 
 	<title>Welcome to 424242424242 Shop</title>
 	</head>
-<?php ?>
+
 <div id="fixed-pos">
-<left><img title ="DOGE" src="./img/photo.jpg" alt="DOGE" height="60" width="60" style="float: left;"/><a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=red" style="float: right;">Red Fruit</a><br>
+<left><img title ="DOGE" src="./includes/photo.jpg" alt="DOGE" height="60" width="60" style="float: left;"/><a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=red" style="float: right;">Red Fruit</a><br>
 <a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=yellow" target="_self" style="float: right;">Yellow Fruit</a><br>
 <a class="sitelink" href="http://localhost:8080/rush00/onlinestore/pages/category_1.php?category=green" target="_self" style="float: right;">Green Fruit</a></center>
 <br>
@@ -43,7 +40,7 @@ session_start();
 </form>
 
 </form>
-<form action="user/create.php">
+<form action="user/create.php" method="post">
 	CREATE<br>
 	<input name="login" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
 	<input name="passwd" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>

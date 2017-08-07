@@ -1,5 +1,7 @@
 <style>
-<?php include '../master_css.css'; ?>
+<?php include '../includes/master_css.css';
+		include '../includes/styles.css';
+?>
 </style>
 <?php
 //include("../db/item.csv");
@@ -10,7 +12,7 @@ $category = $_GET["category"];
 // $headers = $col = "";
 $carturl = "../../cart.php";
 echo "<form action={$carturl} method=\"post\">";
-echo "<table id=\"categories_table\" width=\"100%\" align=\"center\" border=\"2px\"><tr><th style=\"float: left;\" width=\"100%\">Fruit type</th> <th width=\"100%\">Description</th> <th width=\"100%\">Price</th><th>Quantity</th></tr>";
+echo "<table id=\"categories_table\" width=\"100%\" align=\"center\" border=\"2px\"><tr><th style=\"float: left;\" width=\"100%\">Fruit type</th> <th width=\"100%\">Description</th> <th width=\"100%\">Price</th><th width=\"100%\" style=\"float: right\">Quantity</th></tr>";
 foreach ($all as $value) {
    //echo($value["category"]);
    // echo "<br />";
