@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 function auth($login, $passwd)
 {
   $out = unserialize(file_get_contents("../db/passwd"));
@@ -14,13 +14,14 @@ $pw = $_POST["exist_pw"];
 
 if (auth($login , $pw))
  {
-   $_SESSION["loggued_on_user"] = $login;
-   echo "OK\n";
+   $_SESSION["logged_on_user"] = $login;
+   echo "Logged in\n";
  }
 else
   {
-    $_SESSION["loggued_on_user"] = "";
+    $_SESSION["logged_on_user"] = "";
     echo "NO such user\n";
   }
-
+  $url='http://localhost:8080/rush00/day2/test.php';
+   echo '<META HTTP-EQUIV=REFRESH CONTENT="1; '.$url.'">';
 ?>
