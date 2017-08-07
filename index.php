@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("pages/set_cart_var.php");
+?>
+
 <html>
 	<head>
 	<link rel="stylesheet" type"text/css" href="includes/styles.css" />
@@ -42,8 +47,8 @@
 </form>
 <form action="user/create.php" method="post">
 	CREATE<br>
-	<input name="login" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
-	<input name="passwd" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>
+	<input name="lg" onfocus="if (this.value=='Username') this.value = ''" type="text" value="Username"><br>
+	<input name="pd" onfocus="if (this.value=='Password') this.value = ''" type="password" value="Password"><br>
 	<input type="hidden" name="Submitted" value="True" />
 	<input type="submit" value="Send" /><br>
 </form>

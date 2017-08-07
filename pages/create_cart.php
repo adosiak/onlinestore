@@ -1,50 +1,51 @@
 <?php
-
 include("../items/read_items.php");
-include("cart_help.php");
+session_start();
 
-$curr_login = "login_new";//need to assign actual login
-
-$flag = 0;
-$all = read_csv("../db/item_2.csv");
- foreach ($all as $value)
-   if ($_POST["ind_".$value['id']])
-     {
-       $flag = 1;
-       $str = $str.$value['id'].":".$_POST["ind_".$value['id']].";";
-     }
-echo $str;
-
+//print_r($cart);
+function create_str_cart()
+{
+  $cart = $_SESSION['cart'];
+  foreach ($cart as $key => $value)
+  {
+    foreach ($value as $k => $v)
+      $str = $str.$k.':'.$v.";";
+  }
+  $str = $_SESSION['logged_on_user'].",".$str;
+//echo $str;
+return ($str);
+}
+function write_in_cart()
+{
+  //echo "CURRENT_USER=".$_SESSION['logged_on_user']."<br>";
+  $str = create_str_cart();
 if (!file_exists("../db/cart.csv"))
-  file_put_contents("../db/cart.csv", "login,items");
-if ($flag)
+{
+//  echo "100.here<br>";
+  file_put_contents("../db/cart.csv", "login,items\n".$str, FILE_APPEND);
+}
+else
 {
   $all_cart = read_csv("../db/cart.csv");
-  $save = 0;
-  foreach ($all_cart as $value)
-  {  if ($value["login"] == $curr_login)
-    {
-      $save = $value;
-      unset($all_cart[$i]);
-    }
-    $i++;
-  }
-  if ($save)
-  {
-  //  echo"<br>save=".$save['items'];
-  //  print_r($save);
-  //  echo "<br>str=".$str;
-    $fin = check_each($str, $save["items"]);
-    $save['items'] = $fin;
-    $all_cart[] = $save;
-  //  echo "<br>here please:<br>";
-  //  print_r(make_str($all_cart,"../db/cart.csv"));
-    file_put_contents("../db/cart.csv", make_str($all_cart,"../db/cart.csv"));
-  }
-  else
-    file_put_contents("../db/cart.csv", "\n".$curr_login.",".$str,FILE_APPEND);
-}
+  // echo "<br>all:<br>";
+  // print_r($all_cart);
 
-//$all = read_csv("../db/cart.csv");
-//print_r($all);
+  foreach ($all_cart as $key => $value)
+  {
+    echo "<br>1.login=".$value["login"]."<br>";
+    if ($value["login"] == $_SESSION['logged_on_user'])
+    {
+      // echo "2.login=".$value["login"]."all_before:<br>";
+      // print_r($all_cart);
+      unset($all_cart[$key]);
+      // echo "<br>after:<br>";
+      // print_r($all_cart);
+    //  $all_cart[] = array($_SESSION['logged_on_user']=>$_SESSION['cart']);
+      file_put_contents("../db/cart.csv", make_str($all_cart,"../db/cart.csv"));
+    }
+  }
+//  echo "200.here<br>";
+  file_put_contents("../db/cart.csv", $str."\n", FILE_APPEND);
+}
+}
 ?>

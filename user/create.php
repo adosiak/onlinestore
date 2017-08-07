@@ -1,15 +1,16 @@
 <?php
 
-$login = $_POST["login"];
-$passwd = $_POST["passwd"];
+$login = $_POST["lg"];
+$passwd = $_POST["pd"];
 if (!$login || !$passwd)
   {
     echo "enter login AND password\n";
     return ;
   }
+
 $account = array(array("login"=>$login, "password"=>hash('whirlpool',$passwd)));
 
-if (!file_exists("../db/password"))
+if (!file_exists("../db/passwd"))
   $out = $account;
 else
 {
